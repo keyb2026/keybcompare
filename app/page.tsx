@@ -1,5 +1,1 @@
-import { CatalogApp } from "@/components/catalog-app";
-
-export default function HomePage() {
-  return <CatalogApp />;
-}
+export default function Page(){return <main style={{padding:24,fontFamily:'Arial'}}><h1>KBcompare</h1><p>Stable build.</p></main>}
