@@ -1,40 +1,10 @@
-# KeybCompare Version 3
+# KeybCompare One-Go Update
 
-A polished Next.js keyboard comparison website with shadcn-style UI, richer specs, and a catalog-driven data layer.
-
-## What changed
-
-- cleaner premium dark UI
-- larger product gallery cards
-- deeper compare tables
-- extra specs including sound profile, battery life, latency, mounting, materials, software, weight, and actuation range
-- easier filters for wireless and rapid-trigger boards
-
-## Run locally
-
-```bash
-npm install
-npm run dev
-```
-
-## Build
-
-```bash
-npm run build
-```
-
-## Main catalog file
-
-Edit keyboard data here:
-
-```text
-data/keyboards.ts
-```
+This bundle is cleaned for GitHub + Vercel and includes a first verified batch of real product images from official product pages for several flagship models. Models without confirmed image mappings show a clean pending state instead of fake placeholder photos.
 
 ## Deploy
+Upload everything in this folder to your GitHub repo, commit, and let Vercel redeploy.
 
-Push to GitHub and connect to Vercel.
-Make sure Vercel is set to:
-
+Keep Vercel set to:
 - Framework Preset: **Next.js**
 - Output Directory: **blank**

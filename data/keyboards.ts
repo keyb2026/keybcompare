@@ -33,6 +33,8 @@ export type Keyboard = {
   knob: boolean;
   display: boolean;
   profile: string;
+  officialUrl?: string;
+  imageVerified?: boolean;
 };
 
 type Seed = {
@@ -63,6 +65,59 @@ type Seed = {
   knob?: boolean;
   display?: boolean;
   profile?: string;
+  officialUrl?: string;
+};
+
+
+const verifiedImages: Record<string, { image: string; topImage?: string; sideImage?: string; officialUrl?: string }> = {
+  "logitech-g-pro-x-tkl": {
+    image: "https://resource.logitechg.com/w_544%2Ch_466%2Car_7%3A6%2Cc_pad%2Cq_auto%2Cf_auto%2Cdpr_1.0/d_transparent.gif/content/dam/gaming/en/products/pro-x-tkl/gallery-2-pro-x-tkl-black-lightspeed-gaming-keyboard-uk.png",
+    officialUrl: "https://www.logitechg.com/en-gb/shop/p/pro-x-tkl-wireless-keyboard"
+  },
+  "logitech-g-pro-x-tkl-rapid": {
+    image: "https://resource.logitechg.com/w_1440%2Ch_810%2Car_16%3A9%2Cc_fill%2Cq_auto%2Cf_auto%2Cdpr_1.0/d_transparent.gif/content/dam/gaming/en/products/pro-x-tkl-rapid/pro-x-tkl-rapid-feature-01.jpg",
+    officialUrl: "https://www.logitechg.com/en-gb/shop/p/pro-x-tkl-rapid"
+  },
+  "logitech-g915-x-lightspeed": {
+    image: "https://resource.logitechg.com/w_544%2Ch_466%2Car_7%3A6%2Cc_pad%2Cq_auto%2Cf_auto%2Cdpr_1.0/d_transparent.gif/content/dam/gaming/en/products/g915-x-lightspeed-wireless/gallery/g915-x-wireless-mechanical-gaming-keyboard-gallery-3-us.png",
+    officialUrl: "https://www.logitechg.com/en-gb/shop/p/g915-x-wireless-mechanical-gaming-keyboard"
+  },
+  "logitech-g915-x-tkl": {
+    image: "https://resource.logitechg.com/w_544%2Ch_466%2Car_7%3A6%2Cc_pad%2Cq_auto%2Cf_auto%2Cdpr_1.0/d_transparent.gif/content/dam/gaming/en/products/g915-x-lightspeed-tkl/gallery/g915-x-tkl-wireless-keyboard-gallery-1-uk.png",
+    officialUrl: "https://www.logitechg.com/en-gb/shop/p/g915-x-tkl-wireless"
+  },
+  "razer-huntsman-v3-pro-tkl": {
+    image: "https://assets2.razerzone.com/images/pnx.assets/7da1a4a314b26a9c36d8f9334ad283ae/razer-huntsman-v3-pro-tenkeyless-black-hero-desktop-2.webp",
+    officialUrl: "https://www.razer.com/gaming-keyboards/razer-huntsman-v3-pro-tenkeyless"
+  },
+  "steelseries-apex-pro-tkl-wireless-2023": {
+    image: "https://images.ctfassets.net/hmm5mo4qf4mf/2ag0OGuSV1HNPHwpZ47REN/c88ddb10be252c1effec352d7aa0b3bd/bbae5ec4b97b4b8fb28130f3ca3b6db2-2075.png?fit=scale&fm=webp&q=90&w=1920",
+    officialUrl: "https://steelseries.com/en-ie/gaming-keyboards/apex-pro-2023?connectivityType=wireless&keyboardLanguage=uk-english"
+  },
+  "steelseries-apex-pro": {
+    image: "https://images.ctfassets.net/hmm5mo4qf4mf/4mnnXqjUxKSZtKBHnQMXn/fcfe5a57747fcba14c55dd1c377c9013/e83ce335639e4635874e65fbd65f1ab6-2140.png?fit=scale&fm=webp&q=90&w=1920",
+    officialUrl: "https://steelseries.com/en-gb/gaming-keyboards/apex-pro"
+  },
+  "steelseries-apex-7": {
+    image: "https://images.ctfassets.net/hmm5mo4qf4mf/7cHdRlNYTHs8Y5jVxEglDH/9a31bed1dd7c67463b60ed3c2d8ac735/2ff2d4b8587d4af3aeeae2e5fbb4a698-3061.png?fit=scale&fm=webp&q=90&w=1920",
+    officialUrl: "https://steelseries.com/en-gb/gaming-keyboards/apex-7"
+  },
+  "steelseries-apex-9-tkl": {
+    image: "https://images.ctfassets.net/hmm5mo4qf4mf/3tHdP03Ls5WjQpaqqScZOZ/c5227b06bd896a72d682d3451f5487cd/a0bc32930344430a86be030026292d14-3180.png?fit=scale&fm=webp&q=90&w=1920",
+    officialUrl: "https://steelseries.com/en-gb/gaming-keyboards/apex-9"
+  },
+  "corsair-k70-max": {
+    image: "https://assets.corsair.com/image/upload/f_auto%2Cq_auto/v1690315197/products/Gaming-Keyboards/k70-max/PNGs/CRSR_K70MAX_WEB_Panel1_Slide1_DT_2400x1040.png",
+    officialUrl: "https://www.corsair.com/uk/en/p/keyboards/ch-910961g-uk/k70-max-rgb-magnetic-mechanical-gaming-keyboard-adjustable-corsair-mgx-switches-steel-grey-uk-ch-910961g-uk"
+  },
+  "wooting-80he": {
+    image: "https://wooting.io/_next/image?q=90&url=https%3A%2F%2Fwooting-website.ams3.cdn.digitaloceanspaces.com%2Fproducts%2Fkeyboards%2F80HE%2F80HE-front-view-main.webp&w=3840",
+    officialUrl: "https://wooting.io/wooting-80he"
+  },
+  "keychron-q1-max": {
+    image: "https://www.keychron.com/cdn/shop/files/Keychron-Q1-Max-QMK-VIA-Wireless-Custom-Mechanical-Keyboard-75_-Layout-Aluminum-Black-Fully-Assembled-Knob-for-Mac-Windows-Linux-Gateron-Jupiter-Banana.jpg?v=1753685590&width=1200",
+    officialUrl: "https://www.keychron.com/products/keychron-q1-max-qmk-via-wireless-custom-mechanical-keyboard"
+  }
 };
 
 const brandSoftware: Record<string, string> = {
@@ -211,8 +266,14 @@ function inferProfile(seed: Seed) {
 
 function makeKeyboard(brand: string, seed: Seed): Keyboard {
   const connection = seed.connection ?? (seed.wireless ? ["2.4 GHz", "Bluetooth", "USB-C"] : ["USB-C"]);
+  const id = slugify(`${brand}-${seed.model}`);
+  const verified = verifiedImages[id];
+  const fallbackHero = keyboardImageDataUri(brand, seed.model, seed.size, "hero");
+  const fallbackTop = keyboardImageDataUri(brand, seed.model, seed.size, "top");
+  const fallbackSide = keyboardImageDataUri(brand, seed.model, seed.size, "side");
+
   return {
-    id: slugify(`${brand}-${seed.model}`),
+    id,
     brand,
     model: seed.model,
     size: seed.size,
@@ -222,9 +283,9 @@ function makeKeyboard(brand: string, seed: Seed): Keyboard {
     hotSwap: Boolean(seed.hotSwap),
     price: seed.price ?? 129,
     layout: seed.layout ?? "ANSI",
-    image: keyboardImageDataUri(brand, seed.model, seed.size, "hero"),
-    topImage: keyboardImageDataUri(brand, seed.model, seed.size, "top"),
-    sideImage: keyboardImageDataUri(brand, seed.model, seed.size, "side"),
+    image: verified?.image ?? fallbackHero,
+    topImage: verified?.topImage ?? verified?.image ?? fallbackTop,
+    sideImage: verified?.sideImage ?? verified?.image ?? fallbackSide,
     tags: seed.tags ?? [],
     notes: seed.notes ?? `${brand} ${seed.model} ${seed.size} keyboard in the catalog.`,
     soundProfile: inferSound(seed),
@@ -244,6 +305,8 @@ function makeKeyboard(brand: string, seed: Seed): Keyboard {
     knob: Boolean(seed.knob),
     display: Boolean(seed.display),
     profile: inferProfile(seed),
+    officialUrl: seed.officialUrl ?? verified?.officialUrl,
+    imageVerified: Boolean(verified?.image),
   };
 }
 

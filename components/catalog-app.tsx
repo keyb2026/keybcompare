@@ -18,6 +18,7 @@ import {
   Star,
   Volume2,
   Wifi,
+  ExternalLink,
   X,
 } from "lucide-react";
 
