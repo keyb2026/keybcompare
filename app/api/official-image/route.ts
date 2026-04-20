@@ -38,8 +38,8 @@ function scoreCandidate(url: string, context: string, modelWords: string[]) {
 function extractFromJsonStrings(html: string) {
   const urls = new Set<string>();
   const patterns = [
-    /"image"\s*:\s*"(https?:\\/\\/[^"\\]+(?:png|jpg|jpeg|webp)[^"\\]*)"/gi,
-    /"src"\s*:\s*"(https?:\\/\\/[^"\\]+(?:png|jpg|jpeg|webp)[^"\\]*)"/gi,
+    new RegExp('\"image\"\\s*:\\s*\"(https?:\\\\/\\\\/[^\"\\\\]+(?:png|jpg|jpeg|webp)[^\"\\\\]*)\"', 'gi'),
+    new RegExp('\"src\"\\s*:\\s*\"(https?:\\\\/\\\\/[^\"\\\\]+(?:png|jpg|jpeg|webp)[^\"\\\\]*)\"', 'gi'),
     /(https?:\/\/[^"'\s<>]+(?:png|jpg|jpeg|webp)[^"'\s<>]*)/gi,
   ];
   for (const pattern of patterns) {
