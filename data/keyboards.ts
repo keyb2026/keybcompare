@@ -1,4 +1,5 @@
 import { keyboardImageDataUri, slugify } from "@/lib/utils";
+import { officialUrlMap } from "@/data/official-urls";
 
 export type Keyboard = {
   id: string;
@@ -268,6 +269,7 @@ function makeKeyboard(brand: string, seed: Seed): Keyboard {
   const connection = seed.connection ?? (seed.wireless ? ["2.4 GHz", "Bluetooth", "USB-C"] : ["USB-C"]);
   const id = slugify(`${brand}-${seed.model}`);
   const verified = verifiedImages[id];
+  const mappedOfficialUrl = officialUrlMap[id];
   const fallbackHero = keyboardImageDataUri(brand, seed.model, seed.size, "hero");
   const fallbackTop = keyboardImageDataUri(brand, seed.model, seed.size, "top");
   const fallbackSide = keyboardImageDataUri(brand, seed.model, seed.size, "side");
@@ -305,7 +307,7 @@ function makeKeyboard(brand: string, seed: Seed): Keyboard {
     knob: Boolean(seed.knob),
     display: Boolean(seed.display),
     profile: inferProfile(seed),
-    officialUrl: seed.officialUrl ?? verified?.officialUrl,
+    officialUrl: seed.officialUrl ?? verified?.officialUrl ?? mappedOfficialUrl,
     imageVerified: Boolean(verified?.image),
   };
 }

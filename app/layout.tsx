@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "KeybCompare",
-  description: "Keyboard comparison site with a scalable catalog, richer specs, and a first verified batch of official product images.",
+  title: "KBcompare",
+  description: "KBcompare is a keyboard comparison site with 135 starter models, deeper specs, and official-page image importing for supported product links.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
