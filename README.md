@@ -1,2 +1,16 @@
-# keybcompare
-Compare gaming, custom, and productivity keyboards side by side
+# KeybCompare
+
+A Vite + React keyboard comparison website.
+
+## Run locally
+
+```bash
+npm install
+npm run dev
+```
+
+## Build
+
+```bash
+npm run build
+```
