@@ -1,19 +1,17 @@
 export default function KeyboardCard({ keyboard, selected, onToggle }) {
-  const initials = keyboard.brand
-    .split(" ")
-    .map((part) => part[0])
-    .join("")
-    .slice(0, 2)
-    .toUpperCase();
-
+  const showImage = keyboard.image || keyboard.fallbackImage;
   return (
     <article className="keyboardCard">
       <div className="imageFrame">
-        <div className="fakeImage">
-          <div className="fakeLogo">{initials}</div>
-          <div className="fakeModel">{keyboard.name}</div>
-          <div className="fakeSub">{keyboard.size}</div>
-        </div>
+        {showImage ? (
+          <img src={showImage} alt={`${keyboard.brand} ${keyboard.name}`} className="photo" />
+        ) : (
+          <div className="missingPhoto">
+            <div className="missingIcon">⌁</div>
+            <div>Photo not added yet</div>
+          </div>
+        )}
+        {!keyboard.image && keyboard.fallbackImage ? <div className="fallbackBadge">Brand fallback</div> : null}
       </div>
 
       <div className="cardTopline">
