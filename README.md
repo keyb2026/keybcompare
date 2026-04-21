@@ -1,15 +1,15 @@
 # KBcompare
 
-Clean JavaScript-only Next.js rebuild.
+Clean polished 135-model JavaScript-only Next.js build.
 
-## Why this should build
-- no TypeScript files
-- no tsconfig
-- no next-env.d.ts
-- no duplicate page.js/page.tsx
-- no runtime image scraping route
-- no cheerio
+## Includes
+- 135 keyboard models
+- 20 brands
+- compare view only shows selected keyboards
+- no TypeScript
+- no duplicate routes
+- no broken image scraping route
 
-## Vercel settings
+## Vercel
 - Framework: Next.js
 - Output Directory: blank

@@ -2,7 +2,7 @@ import "./globals.css";
 
 export const metadata = {
   title: "KBcompare",
-  description: "Clean stable keyboard comparison site"
+  description: "Compare 135 keyboard models side by side."
 };
 
 export default function RootLayout({ children }) {
