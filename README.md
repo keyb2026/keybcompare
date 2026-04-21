@@ -1,14 +1,16 @@
-# KBcompare
+# KBcompare V6 Final Local Images
 
-Working 135-model polished build with stable verified images added back in.
+This version uses bundled local SVG image assets for all 135 models.
 
-## Includes
-- 135 keyboard models
-- compare view only shows selected keyboards
-- verified direct image URLs where confirmed
-- brand fallback images where model-specific images were not added yet
-- plain JavaScript Next.js build
+## Why this fixes the image problem
+- no hotlinked remote images
+- no blocked brand CDNs
+- all images live inside /public/images/models
+- stable on Vercel
 
 ## Vercel
 - Framework: Next.js
 - Output Directory: blank
+
+## Note
+These are clean local product-style image assets, not official product photos.

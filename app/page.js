@@ -11,16 +11,27 @@ export default function Page() {
 
   const filtered = useMemo(() => {
     return keyboards.filter((keyboard) => {
-      const matchesQuery = !query.trim() || `${keyboard.brand} ${keyboard.name} ${keyboard.size} ${keyboard.switchType}`.toLowerCase().includes(query.toLowerCase());
+      const matchesQuery =
+        !query.trim() ||
+        `${keyboard.brand} ${keyboard.name} ${keyboard.size} ${keyboard.switchType}`
+          .toLowerCase()
+          .includes(query.toLowerCase());
       const matchesBrand = brandFilter === "All" || keyboard.brand === brandFilter;
       return matchesQuery && matchesBrand;
     });
   }, [query, brandFilter]);
 
-  const selected = useMemo(() => keyboards.filter((keyboard) => selectedIds.includes(keyboard.id)), [selectedIds]);
+  const selected = useMemo(
+    () => keyboards.filter((keyboard) => selectedIds.includes(keyboard.id)),
+    [selectedIds]
+  );
 
   function toggleKeyboard(id) {
-    setSelectedIds((current) => current.includes(id) ? current.filter((entry) => entry !== id) : [...current, id].slice(-4));
+    setSelectedIds((current) =>
+      current.includes(id)
+        ? current.filter((entry) => entry !== id)
+        : [...current, id].slice(-4)
+    );
   }
 
   return (
@@ -28,24 +39,39 @@ export default function Page() {
       <header className="hero">
         <div>
           <div className="eyebrow">KBcompare</div>
-          <h1>135 models, polished UI, stable verified images.</h1>
-          <p className="heroText">Only selected keyboards appear in compare view. Verified images show where they exist, brand-safe fallbacks show where they do not.</p>
+          <h1>V6 Final, local image assets, stable deploy.</h1>
+          <p className="heroText">
+            Every card now uses a bundled local image file, so there are no broken hotlinks on Vercel.
+            Compare only the keyboards you actually selected.
+          </p>
           <div className="heroStats">
-            <span>135 models</span><span>20 brands</span><span>Compare up to 4</span>
+            <span>135 models</span>
+            <span>20 brands</span>
+            <span>Local images for every card</span>
           </div>
         </div>
+
         <div className="summaryCard">
           <div className="summaryTitle">Selected now</div>
-          {selected.length === 0 ? <p className="muted">No keyboards selected yet.</p> : (
+          {selected.length === 0 ? (
+            <p className="muted">No keyboards selected yet.</p>
+          ) : (
             <ul className="selectedList">
-              {selected.map((keyboard) => <li key={keyboard.id}><strong>{keyboard.brand}</strong> {keyboard.name}</li>)}
+              {selected.map((keyboard) => (
+                <li key={keyboard.id}><strong>{keyboard.brand}</strong> {keyboard.name}</li>
+              ))}
             </ul>
           )}
         </div>
       </header>
 
       <section className="toolbar">
-        <input className="searchInput" placeholder="Search brand, model, size, switch..." value={query} onChange={(e) => setQuery(e.target.value)} />
+        <input
+          className="searchInput"
+          placeholder="Search brand, model, size, switch..."
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+        />
         <select className="brandSelect" value={brandFilter} onChange={(e) => setBrandFilter(e.target.value)}>
           <option value="All">All brands</option>
           {brands.map((brand) => <option key={brand} value={brand}>{brand}</option>)}
@@ -78,7 +104,9 @@ export default function Page() {
           ) : (
             <>
               <div className="cardGrid">
-                {selected.map((keyboard) => <KeyboardCard key={keyboard.id} keyboard={keyboard} selected={selectedIds.includes(keyboard.id)} onToggle={toggleKeyboard} />)}
+                {selected.map((keyboard) => (
+                  <KeyboardCard key={keyboard.id} keyboard={keyboard} selected={selectedIds.includes(keyboard.id)} onToggle={toggleKeyboard} />
+                ))}
               </div>
               <CompareTable selected={selected} />
             </>

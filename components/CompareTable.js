@@ -12,12 +12,16 @@ const rows = [
   ["Case material", (keyboard) => keyboard.material],
   ["Price", (keyboard) => keyboard.price]
 ];
+
 export default function CompareTable({ selected }) {
   return (
     <div className="tableWrap">
       <table className="compareTable">
         <thead>
-          <tr><th>Spec</th>{selected.map((keyboard) => <th key={keyboard.id}>{keyboard.brand} {keyboard.name}</th>)}</tr>
+          <tr>
+            <th>Spec</th>
+            {selected.map((keyboard) => <th key={keyboard.id}>{keyboard.brand} {keyboard.name}</th>)}
+          </tr>
         </thead>
         <tbody>
           {rows.map(([label, getter]) => (

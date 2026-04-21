@@ -1,1 +1,1 @@
-export default { images: { remotePatterns: [{ protocol: 'https', hostname: '**' }] } };
+export default {};
