@@ -21,7 +21,7 @@ export default function Page() {
         <div className="heroCopy">
           <div className="eyebrow">KBcompare</div>
           <h1>Compare keyboards side by side.</h1>
-          <p className="heroText">Compare view that only shows the boards you selected.</p>
+          <p className="heroText">Browse the catalog, pick up to four keyboards, and compare their specs in one place.</p>
           <div className="heroStats"><span>135 models</span><span>20 brands</span><span>Local premium images</span></div>
         </div>
         <div className="heroSummary">

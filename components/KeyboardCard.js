@@ -1,7 +1,13 @@
 export default function KeyboardCard({ keyboard, selected, onToggle }) {
   return (
     <article className="keyboardCard">
-      <div className="imageFrame"><img src={keyboard.image} alt={`${keyboard.brand} ${keyboard.name}`} className="photo" /></div>
+      <div className="imageFrame">
+        {keyboard.image ? (
+          <img src={keyboard.image} alt={`${keyboard.brand} ${keyboard.name}`} className="photo" />
+        ) : (
+          <div className="missingPhoto"><div className="missingIcon">⌁</div><div>Photo not added yet</div></div>
+        )}
+      </div>
       <div className="cardTopline"><span className="brandLabel">{keyboard.brand}</span><span className="sizeBadge">{keyboard.size}</span></div>
       <h3 className="cardTitle">{keyboard.name}</h3>
       <div className="tagRow">
