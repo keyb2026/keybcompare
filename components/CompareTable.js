@@ -1,49 +1,43 @@
 const rows = [
-["Brand", (k) => k.brand],
-["Model", (k) => k.name],
-["Size", (k) => k.size],
-["Switch type", (k) => k.switchType],
-["Wireless", (k) => (k.wireless ? "Yes" : "No")],
-["Latency", (k) => k.latency],
-["Battery", (k) => k.battery],
-["Polling", (k) => k.polling],
-["Sound", (k) => k.sound],
-["Mount", (k) => k.mount],
-["Case material", (k) => k.material],
-["Price", (k) => k.price]
+  ["Brand", (k) => k.brand],
+  ["Model", (k) => k.name],
+  ["Size", (k) => k.size],
+  ["Switch type", (k) => k.switchType],
+  ["Wireless", (k) => (k.wireless ? "Yes" : "No")],
+  ["Latency", (k) => k.latency],
+  ["Battery", (k) => k.battery],
+  ["Polling", (k) => k.polling],
+  ["Sound", (k) => k.sound],
+  ["Mount", (k) => k.mount],
+  ["Case material", (k) => k.material],
+  ["Price", (k) => k.price]
 ];
+
 export default function CompareTable({ selected }) {
-return (
-6
-<div className="tableWrap">
-<table className="compareTable">
-<thead>
-<tr>
-<th>Spec<
-/th>
-{selected.map((k) => (
-<th key={k.id}>
-{k.brand} {k.name}
-</th>
-))}
-</tr>
-</
-thead>
-<tbody>
-{rows.map(([label, getter]) => (
-<tr key={label}>
-<td>{label}<
-/td>
-{selected.map((k) => (
-<td key={`${k.id}-${label}`}>{getter(k)}<
-))}
-</tr>
-))}
-</
-tbody>
-</
-table>
-</d
-iv>
-);
+  return (
+    <div className="tableWrap">
+      <table className="compareTable">
+        <thead>
+          <tr>
+            <th>Spec</th>
+            {selected.map((k) => (
+              <th key={k.id}>
+                {k.brand} {k.name}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map(([label, getter]) => (
+            <tr key={label}>
+              <td>{label}</td>
+              {selected.map((k) => (
+                <td key={`${k.id}-${label}`}>{getter(k)}</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
 }

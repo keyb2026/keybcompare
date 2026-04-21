@@ -1,3 +1,3 @@
-# KBcompare Wave 1
+# KBcompare
 
-95-image first wave on top of the working V7 base. Remaining models show Photo not added yet.
+Next.js app for comparing keyboards side by side.

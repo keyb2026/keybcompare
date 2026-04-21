@@ -21,10 +21,7 @@ export default function Page() {
         `${k.brand} ${k.name} ${k.size} ${k.switchType}`
           .toLowerCase()
           .includes(query.toLowerCase());
-
-      const matchesBrand =
-        brandFilter === "All" || k.brand === brandFilter;
-
+      const matchesBrand = brandFilter === "All" || k.brand === brandFilter;
       return matchesQuery && matchesBrand;
     });
   }, [query, brandFilter]);
@@ -52,15 +49,19 @@ export default function Page() {
             Browse the catalog, pick up to four keyboards, and compare their
             specs in one place.
           </p>
+          <div className="heroStats">
+            <span>135 models</span>
+            <span>20 brands</span>
+            <span>Compare up to 4</span>
+          </div>
         </div>
 
         <div className="heroSummary">
           <div className="summaryTitle">Selected now</div>
-
           {selected.length === 0 ? (
-            <p>No keyboards selected yet.</p>
+            <p className="muted">No keyboards selected yet.</p>
           ) : (
-            <ul>
+            <ul className="selectedList">
               {selected.map((k) => (
                 <li key={k.id}>
                   <strong>{k.brand}</strong> {k.name}
@@ -74,18 +75,16 @@ export default function Page() {
       <section className="toolbar">
         <input
           className="searchInput"
-          placeholder="Search..."
+          placeholder="Search brand, model, size, switch..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />
-
         <select
           className="brandSelect"
           value={brandFilter}
           onChange={(e) => setBrandFilter(e.target.value)}
         >
           <option value="All">All brands</option>
-
           {brands.map((brand) => (
             <option key={brand} value={brand}>
               {brand}
@@ -96,39 +95,59 @@ export default function Page() {
 
       <section className="mainLayout">
         <aside className="browserPanel">
-          {filtered.map((k) => {
-            const active = selectedIds.includes(k.id);
-
-            return (
-              <button
-                key={k.id}
-                className="browserItem"
-                onClick={() => toggleKeyboard(k.id)}
-              >
-                <div>
-                  <div>{k.brand} {k.name}</div>
-                  <div>{k.size} • {k.switchType}</div>
-                </div>
-
-                <div>{active ? "✓" : "+"}</div>
-              </button>
-            );
-          })}
+          <div className="sectionHeader">
+            <h2>Browse catalog</h2>
+            <span>{filtered.length} shown</span>
+          </div>
+          <div className="browserList">
+            {filtered.map((k) => {
+              const active = selectedIds.includes(k.id);
+              return (
+                <button
+                  key={k.id}
+                  className={`browserItem ${active ? "browserItemActive" : ""}`}
+                  onClick={() => toggleKeyboard(k.id)}
+                >
+                  <div>
+                    <div className="browserName">
+                      {k.brand} {k.name}
+                    </div>
+                    <div className="browserMeta">
+                      {k.size} • {k.switchType}
+                    </div>
+                  </div>
+                  <div className="browserAction">{active ? "✓" : "+"}</div>
+                </button>
+              );
+            })}
+          </div>
         </aside>
 
         <section className="compareArea">
-          <div className="cardGrid">
-            {selected.map((k) => (
-              <KeyboardCard
-                key={k.id}
-                keyboard={k}
-                selected={selectedIds.includes(k.id)}
-                onToggle={toggleKeyboard}
-              />
-            ))}
+          <div className="sectionHeader">
+            <h2>Compare view</h2>
+            <span>Only selected keyboards appear here</span>
           </div>
 
-          <CompareTable selected={selected} />
+          {selected.length === 0 ? (
+            <div className="emptyState">
+              Select keyboards from the left to compare them here.
+            </div>
+          ) : (
+            <>
+              <div className="cardGrid">
+                {selected.map((k) => (
+                  <KeyboardCard
+                    key={k.id}
+                    keyboard={k}
+                    selected={selectedIds.includes(k.id)}
+                    onToggle={toggleKeyboard}
+                  />
+                ))}
+              </div>
+              <CompareTable selected={selected} />
+            </>
+          )}
         </section>
       </section>
     </main>
